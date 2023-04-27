@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+   <title>ML API</title>
+   <style>
+     body{
+       background-image: url('3274408.jpg');
+       background-position: center;
+       background-size: cover;
+       background-color: #1fdbf0;
+       
+     }
+   </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 login d-flex justify-content-center mt-5 mb-5">
+        <!--Heading Top-->
+        <h1 class="align-items-center">
+          Boston House Price Prediction
+        </h1>
+      </div>
+      <div class="col-11 mx-5">
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict')}}"method="post">
+          <!--First Row-->
+          <div class="row align-items-start">
+            <!--Col-1-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="CRIM" placeholder="CRIM - per capita crime rate by town" required="required" /><br>
+            </div>
+            <!--Col-1-end-->
+          
+            <!--Col-2-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="ZN" placeholder="ZN - proportion of residential land zoned for lots over 25,000 sq.ft" required="required" /><br>
+            </div>
+            <!--Col-2-end-->
+          </div>
+          
+          <!--Second Row-->
+          <div class="row align-items-start">
+            <!--Col-3-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="INDUS" placeholder="INDUS - proportion of non-retail business acres per town" required="required" /><br>
+            </div>
+            <!--Col-3-end-->
+         
+            <!--Col-4-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="CHAS" placeholder="CHAS - Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)" required="required" /><br>
+            </div>
+            <!--Col-4-end-->
+          </div>
+          
+          <!--Third Row-->
+          <div class="row align-items-start">
+            <!--Col-5-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="NOX" placeholder="NOX - nitric oxides concentration (parts per 10 million)" required="required" /><br>  
+            </div>
+            <!--Col-5-end-->
+         
+            <!--Col-6-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="RM" placeholder="RM - average number of rooms per dwelling" required="required" /><br>           
+            </div>
+            <!--Col-6-end-->
+          </div>
+          
+          <!--Fourth Row-->
+          <div class="row align-items-start">
+            <!--Col-7-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="Age" placeholder="Age - proportion of owner-occupied units built prior to 1940" required="required" /><br>
+            </div>
+            <!--Col-7-end-->
+
+            <!--Col-8-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="DIS" placeholder="DIS - weighted distances to five Boston employment centres" required="required" /><br>
+            </div>
+            <!--Col-8-end-->
+          </div>
+          
+          <!--Fifth Row-->
+          <div class="row align-items-start">
+            <!--Col-9-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="RAD" placeholder="RAD - index of accessibility to radial highways" required="required" /><br>
+            </div>
+            <!--Col-9-end-->
+
+            <!--Col-10-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="TAX" placeholder="TAX - full-value property-tax rate per $10,000" required="required" /><br>
+            </div>
+            <!--Col-10-end-->
+          </div>
+          <!--Sixth Row-->
+          <div class="row">
+            <!--Col-11-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="PTRATIO" placeholder="PTRATIO - pupil-teacher ratio by town" required="required" /><br>
+            </div>
+            <!--Col-11-end-->
+          
+            <!--Col-12-start-->
+            <div class="col">
+              <input type="text" class="form-control rounded" name="B" placeholder="B - 1000(Bk - 0.63)^2 where Bk is the proportion of black people by town" required="required" /><br>
+            </div>
+            <!--Col-12-end-->
+          </div>
+          <!--Col-13-start-->
+          <div class="col">
+            <input type="text" class="form-control rounded" name="LSTAT" placeholder="LSTAT - lower status of the population" required="required" /><br>
+          </div>
+           <!--Col-13-end-->
+          <button type="submit" class="btn btn-primary btn-block btn-large w-100">Predict</button>
+      </form>
+
+   <br>
+   <br>
+  
+   
+ </div>
+ {{prediction_text}}
+<!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>
